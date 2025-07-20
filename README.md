@@ -14,6 +14,10 @@
 
 ## About ##
 
+![GitHub Repo stars](https://img.shields.io/github/stars/vireo-lang/vireoc?style=flat&logo=github)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/vireo-lang/vireoc/CMake%20on%20multiple%20platforms?logo=github)
+![GitHub forks](https://img.shields.io/github/forks/vireo-lang/vireoc?style=flat&logo=github)
+
 `vireoc` is an **official**, **up-to-date** compiler for the
 [Vireo](https://vireo-lang.github.io) programming language.
 
