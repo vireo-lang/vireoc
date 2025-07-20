@@ -1,4 +1,6 @@
-# `vireoc` -- The Vireo compiler #
+<div align="center">
+    <h1>`vireoc` -- The Vireo compiler</h1>
+</div>
 
 <p align="center">
     <a href="#about">❖ About</a>
