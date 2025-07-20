@@ -10,10 +10,6 @@
 #include <fstream>
 #include <iostream>
 
-#if (!defined(__GNUC__))
-#warning Compiling without GNU extensions.
-#endif
-
 #define USE(X) ((void)X)
 
 /**************
