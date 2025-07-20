@@ -3,10 +3,6 @@
 <p align="center">
     <a href="#about">❖ About</a>
     <a href="#installation">❖ Installation</a>
-        <a href="#building-from-source">◉ Building from source</a>
-            <a href="#dependencies">⁍ Dependencies</a>
-            <a href="#building">⁍ Building ⁍</a>
-        <a href="#pre-built-binaries">◉ Pre-built binaries ◉</a>
     <a href="#credits">❖ Credits</a>
     <a href="#license">❖ License ❖</a>
 </p>
