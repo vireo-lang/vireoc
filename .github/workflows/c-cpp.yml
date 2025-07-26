@@ -15,3 +15,14 @@ jobs:
     - uses: actions/checkout@v4
     - name: build
       run: make all
+    - name: Create artifacts
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: Build
+        path: vireo-src.tar.gz
+        compression-level: 0
+        retention-days: 90
+        if-no-files-found: error # means we could not build
+      run:
+        make dist
+        
