@@ -65,7 +65,7 @@ clean:
 # Create source archive (clean first)
 dist: clean
 	@echo [i] Creating source archive: $(DISTNAME)
-	"$(ZIP)" -r $(DISTNAME) *.cpp api\*.h Makefile.mingw vireo.pc
+	"$(ZIP)" -r $(DISTNAME) *
 
 format:
 	@printf "\033[34m[i]\033[0m Formatting sources...\n"

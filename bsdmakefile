@@ -56,7 +56,7 @@ clean:
 
 dist: clean
 	@printf '\033[36m[i]\033[0m Creating source archive: ${DISTNAME}\n'
-	tar czf ${DISTNAME} *.cpp api/*.h Makefile vireo.pc
+	tar czf ${DISTNAME} *
 
 doxy:
 	doxygen

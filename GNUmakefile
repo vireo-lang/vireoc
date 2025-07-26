@@ -57,7 +57,7 @@ doxy:
 
 dist: clean
 	@printf '\033[36m[i]\033[0m Creating source archive\n'
-	tar czf $(TARGET)-src.tar.gz source api Makefile vireo.pc
+	tar czf $(TARGET)-src.tar.gz *
 
 format:
 	@echo "Formatting C/C++ sources and headers..."
