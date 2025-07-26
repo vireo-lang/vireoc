@@ -8,21 +8,22 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: build
+
+    - name: Build project
       run: make all
-    - name: Create artifacts
+
+    - name: Create distribution archive
+      run: make dist
+
+    - name: Upload artifact
       uses: actions/upload-artifact@v4.6.2
       with:
         name: Build
         path: vireo-src.tar.gz
         compression-level: 0
         retention-days: 90
-        if-no-files-found: error # means we could not build
-      run:
-        make dist
-        
+        if-no-files-found: error
