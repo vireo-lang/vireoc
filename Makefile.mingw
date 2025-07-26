@@ -1,0 +1,79 @@
+# Sources and build setup
+SOURCES     := $(wildcard source/*.cpp)
+OBJECTS     := $(patsubst %.cpp,build/%.o,$(SOURCES))
+DEPS        := $(patsubst %.cpp,build/%.d,$(SOURCES))
+HEADERS     := $(wildcard api/*.h source/*.hpp)
+
+CXX         ?= clang++
+DEFS        ?= -D_DEBUG
+CXXFLAGS    := -Wall -Werror -std=c++23 $(shell llvm-config --cxxflags) $(DEFS)\
+							 -I./external/ -fexceptions
+
+LDFLAGS     := $(shell llvm-config --cxxflags --ldflags --libs) -L./external/
+
+TARGET      ?= vireo.exe
+PREFIX      ?= C:/mingw64
+DISTNAME    := $(basename $(TARGET))-src.zip
+
+.PHONY: all clean install dist build
+
+all: $(TARGET)
+
+# Link target
+$(TARGET): $(OBJECTS)
+	@echo [i] Linking $@ from $^
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+# Compile with dependencies
+build/%.o: %.cpp | build
+	@echo [i] Compiling $< -> $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
+
+# Make sure build directory exists
+build:
+	if not exist build mkdir build
+
+# Install: copy binary and headers, and pkg-config file
+install: $(TARGET)
+	@echo [i] Installing $(TARGET) to $(PREFIX)
+	if not exist $(PREFIX)/bin mkdir $(PREFIX)/bin
+	copy /Y $(TARGET) $(PREFIX)/bin
+
+	@echo [i] Installing headers to $(PREFIX)/include/vireo
+	if not exist $(PREFIX)/include/vireo mkdir $(PREFIX)/include/vireo
+	copy /Y api\*.h $(PREFIX)/include/vireo
+
+	@echo [i] Installing pkg-config file
+	if not exist $(PREFIX)/lib\pkgconfig mkdir $(PREFIX)/lib\pkgconfig
+	copy /Y vireo.pc $(PREFIX)/lib\pkgconfig
+
+deinstall:
+	@echo [i] Deinstalling $(TARGET) from $(PREFIX)...
+	if exist $(PREFIX)\bin\$(TARGET) del /F /Q $(PREFIX)\bin\$(TARGET)
+	if exist $(PREFIX)\include\vireo rmdir /S /Q $(PREFIX)\include\vireo
+	if exist $(PREFIX)\lib\pkgconfig\vireo.pc del /F /Q $(PREFIX)\lib\pkgconfig\vireo.pc
+
+# Clean build artifacts and dist archive
+clean:
+	@echo [i] Cleaning build artifacts
+	if exist build rmdir /S /Q build
+	if exist $(TARGET) del /F $(TARGET)
+	if exist $(DISTNAME) del /F $(DISTNAME)
+	if exist latex del /S /Q latex
+	if exist html del /S /Q html
+
+# Create source archive (clean first)
+dist: clean
+	@echo [i] Creating source archive: $(DISTNAME)
+	"$(ZIP)" -r $(DISTNAME) *.cpp api\*.h Makefile.mingw vireo.pc
+
+format:
+	@printf "\033[34m[i]\033[0m Formatting sources...\n"
+	clang-format -i $(SOURCES) $(HEADERS)
+
+doxy:
+	doxygen
+
+# Include dependencies
+-include $(DEPS)
+

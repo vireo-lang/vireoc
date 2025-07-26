@@ -1,9 +1,0 @@
-build/
-*.tmp
-*.kdev4
-*.swp
-*.swo
-.idea
-.vscode
-.DS_Store
-__MACOSX

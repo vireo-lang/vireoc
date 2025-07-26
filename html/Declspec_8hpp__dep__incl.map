@@ -1,0 +1,5 @@
+<map id="source/Declspec.hpp" name="source/Declspec.hpp">
+<area shape="rect" id="node1" title="Sets attributes to declarations (works with Clang, GCC, and MSVC)." alt="" coords="57,5,213,32"/>
+<area shape="rect" id="node2" href="$Logging_8hpp.html" title="Logging utilities." alt="" coords="5,80,153,107"/>
+<area shape="rect" id="node3" href="$Main_8cpp.html" title="Mostly the CLI, also sets up some stuff." alt="" coords="71,155,199,181"/>
+</map>

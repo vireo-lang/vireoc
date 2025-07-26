@@ -1,0 +1,20 @@
+prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: vireo
+Description: Vireo C API
+Version: 1.0.0
+Cflags: -I${includedir}/vireo
+Libs:
+
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: vireo
+Description: Vireo C API
+Version: 1.0.0
+Cflags: -I${includedir}/vireo
+Libs:
+
